@@ -1,4 +1,4 @@
 serviceName: foo
 port: 5530
 result: !!binary |
-  ARWaAANmb28=
+  ARWaAANmb28A
