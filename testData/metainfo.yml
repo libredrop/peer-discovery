@@ -1,0 +1,10 @@
+port: 5530
+meta:
+  foo: bar
+  answer: 42
+  lorem: true
+  bin: !!binary |
+    j/z1nFmxFHR0sSjD9iDO1CKKjg8=
+result: !!binary |
+  ARWaAAAEA2ZvbwZhbnN3ZXIFbG9yZW0DYmluAANiYXIABAAAACoAAQEAFI/89ZxZsRR0dLEow/Yg
+  ztQiio4P

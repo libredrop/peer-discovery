@@ -1,0 +1,7 @@
+serviceName: foo
+port: 5530
+ip:
+  - 192.168.1.1
+  - 127.0.0.1
+result: !!binary |
+  ARWaAsCoAQF/AAABA2ZvbwA=
