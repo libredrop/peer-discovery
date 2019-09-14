@@ -87,17 +87,17 @@ The serialized message has to fit into 65000 bytes - maximum size of UDP packet.
 The big-endian byte order is used to encode numeric values.
 
 ```text
-      1B     16B          2B        service_name_len      1B
+      1B     16B          1B        service_name_len      1B
   +---------+----+------------------+--------------+-------------------+
   | version | ID | service_name_len | service_name | transport_protocol|
   +---------+----+------------------+--------------+-------------------+
 
-        2B           2B        4B           4B        2B
+        2B           1B        4B           4B        1B
   +--------------+----------+-----+-----+------+------------+
   | service_port | ip_count | IP1 | ... | IP_N | item_count |
   +--------------+----------+-----+-----+------+------------+
 
-      2B               2B     key1_len     key_n_len
+      1B               1B     key1_len     key_n_len
   +----------+-----+----------+------+-----+-------+
   | key1_len | ... |key_n_len | key1 | ... | key_n |
   +----------+-----+----------+------+-----+-------+
@@ -110,16 +110,19 @@ The big-endian byte order is used to encode numeric values.
 
 * `version` (1 byte) -  protocol version number.
 * `ID` (16 bytes) - 128bit unique identifier, big endian encoding.
-* `service_name_len` (2 bytes) - the length of the service name string.
+* `service_name_len` (1 byte) - the length of the service name string.
+   NOTE, that since `service_name` is UTF-8, this is NOT a number of symbols,
+   but rather a number of bytes.
 * `service_name` (service_name_len) - UTF-8 encoded service name.
 * `transport_protocol` (1 bytes) - the protocol that peer exposes its service
    over. 0 - TCP, 1 - UDP.
 * `service_port` (2 bytes) - TCP or UDP port of the service the peer exposes.
-* `ip_count` (2 bytes) - the number of IPv4 addresses the peer has.
+* `ip_count` (1 byte) - the number of IPv4 addresses the peer has.
 * `IP_N` (4 bytes) - all peer IPv4 addresses each encoded with big endian.
-* `item_count` (2 bytes) - the number of key-value pairs.
-* `key_x_len` (2 bytes) - defines how long is the key string. There is one `key_x_len`
-    record for each item.
+* `item_count` (1 byte) - the number of key-value pairs.
+* `key_x_len` (1 byte) - defines how long is the key string. There is one `key_x_len`
+    record for each item. NOTE, that keys are UTF-8 strings, this is NOT
+    a number of symbols, but rather a number of bytes.
 * `key_x` (key_x_len bytes) - UTF-8 encoded key content. There is one `key_x`
     record for each item.
 * `value_x_len` (2 bytes) - defines how long is the bytes array of an item value.
