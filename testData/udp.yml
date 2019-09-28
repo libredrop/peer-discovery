@@ -1,10 +1,11 @@
 port: 1234
-uuid: 00000000-0000-0000-0000-000000000000
+protocol: udp
+uuid: 00000000-0000-0000-0000-00000000000E
 result: |
   01                                              # Version
-  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 # UUID
+  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 0E # UUID
   00                                              # service_name_len + service_name
-  00                                              # transport_protocol
+  01                                              # transport_protocol
   04 D2                                           # service_port
   00                                              # ip_count
   00                                              # item_count

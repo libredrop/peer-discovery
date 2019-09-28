@@ -1,3 +1,5 @@
+serviceName: foo
+uuid: A57D9DA7-8AE6-086B-A505-0FB033063118
 port: 1234
 meta:
   foo: bar
@@ -6,14 +8,18 @@ meta:
   bin: !!binary |
     Oh+ONCSi11sVIgmOV7Q=
   utf8: laisvė
-uuid: 00000000-0000-0000-0000-000000000000
+ip:
+  - 192.168.1.1
+  - 127.0.0.1
 result: |
   01                                                 # Version
-  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    # UUID
-  00                                                 # service_name_len + service_name
+  A5 7D 9D A7 8A E6 08 6B A5 05 0F B0 33 06 31 18    # UUID
+  03 66 6F 6F                                        # service_name_len + service_name
   00                                                 # transport_protocol
   04 D2                                              # service_port
-  00                                                 # ip_count
+  02                                                 # ip_count
+  C0 A8 01 01                                        # 192.168.1.1
+  7F 00 00 01                                        # 127.0.0.1
   05                                                 # item_count
   03 66 6F 6F                                        # key: "foo"
   06 61 6E 73 77 65 72                               # key: "answer"

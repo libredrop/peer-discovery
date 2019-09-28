@@ -1,7 +1,16 @@
 serviceName: foo
-port: 5530
+port: 1234
 ip:
   - 192.168.1.1
   - 127.0.0.1
-result: !!binary |
-  ARWaAsCoAQF/AAABA2ZvbwA=
+uuid: 00000000-0000-0000-0000-000000000000
+result: |
+  01                                              # Version
+  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 # UUID
+  03 66 6F 6F                                     # service_name_len + service_name
+  00                                              # transport_protocol
+  04 D2                                           # service_port
+  02                                              # ip_count
+  C0 A8 01 01                                     # 192.168.1.1
+  7F 00 00 01                                     # 127.0.0.1
+  00                                              # item_count
