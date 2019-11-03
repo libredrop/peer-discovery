@@ -1,10 +1,12 @@
 This document describes the networking protocol to discover peers on LAN which
 is used by `libredrop`. Although, the protocol is general purpose an can be
-easilly reused for peer discovery on LAN.
+easilly reused for peer discovery on LAN by any other application.
 
 ## The protocol
 
-Peer discovery works by periodically broadcasting beacon messages on LAN.
+Peer discovery works by periodically broadcasting UDP messages on LAN.
+Each message describes the service being advertised and how to contact with
+it on this particular local area network.
 
 ## Flow
 
@@ -34,6 +36,8 @@ to make port be higher than 1024 (privileged ports).
 Each of those peers participating in some service discovery keep resending
 discovery every 3 seconds - not too small number to avoid network congestion
 and not too big to have relatively low latency of new peer discovery.
+3 seconds is the default, but this number is arbitrary and can be changed
+by implementers.
 
 ### Message format
 
@@ -71,10 +75,10 @@ forwards broadcast message back to us, etc.
 
 Since `peerdiscovery` can be used for multiple different services
 simulataneously we need a way to tell which services is being advertised.
-Hence `service_name` field.
+Hence `service_name` field, e.g. "libredrop", "my-network-game", etc.
 
 Then every networking service will be listening on some `port`. Since a peer
-on LAN might have multiple network interfaces, it sendss a list of
+on LAN might have multiple network interfaces, it sends a list of
 `ipv4_addrs`.
 
 Finally, peer discovery message can contain arbitrary data, e.g. public key.
