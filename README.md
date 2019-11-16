@@ -1,6 +1,6 @@
 This document describes the networking protocol to discover peers on LAN which
-is used by `libredrop`. Although, the protocol is general purpose an can be
-easilly reused for peer discovery on LAN by any other application.
+is used by `libredrop`. The protocol is general purpose and can be easilly
+reused for any other application.
 
 ## The protocol
 
@@ -101,15 +101,15 @@ The big-endian byte order is used to encode numeric values.
   | service_port | ip_count | IP1 | ... | IP_N | item_count |
   +--------------+----------+-----+-----+------+------------+
 
-      1B               1B     key1_len     key_n_len
-  +----------+-----+----------+------+-----+-------+
-  | key1_len | ... |key_n_len | key1 | ... | key_n |
-  +----------+-----+----------+------+-----+-------+
+      1B     key1_len          1B     key_n_len
+  +----------+------+-----+-----------+-------+
+  | key1_len | key1 | ... | key_n_len | key_n |
+  +----------+------+-----+-----------+-------+
 
-        2B                2B       value1_len     value_x_len
-  +------------+-----+-------------+--------+-----+---------+
-  | value1_len | ... | value_x_len | value1 | ... | value_x |
-  +------------+-----+-------------+--------+-----+---------+
+        2B     value1_len            2B     value_x_len
+  +------------+--------+-----+-------------+---------+
+  | value1_len | value1 | ... | value_x_len | value_x |
+  +------------+--------+-----+-------------+---------+
 ```
 
 * `version` (1 byte) -  protocol version number.
