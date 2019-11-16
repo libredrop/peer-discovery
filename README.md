@@ -10,7 +10,7 @@ it on this particular local area network.
 
 ## Flow
 
-The peer that wants to be discovered sends [discovery message](### Message format)
+The peer that wants to be discovered sends [discovery message](#message-format)
 over LAN. The multicast address `255.255.255.255` is used to transfer peer discover
 messages to all devices connected to the same LAN. The UDP port 5330 is used. 533 stands
 for SEE in [leet language](https://en.wikipedia.org/wiki/Leet) and 0 is just a suffix
